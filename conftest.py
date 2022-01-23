@@ -1,5 +1,6 @@
 import pytest
 from fixture.digift_page import DigiftPage
+from fixture.api import ApiHelper
 
 fixture = None
 
@@ -14,3 +15,9 @@ def app(request):
         fixture.destroy()
     request.addfinalizer(fin)
     return fixture
+
+
+@pytest.fixture(scope="session")
+def api():
+    api_fixture = ApiHelper(api_url='https://www.lenvendo.ru/api/')
+    return api_fixture
