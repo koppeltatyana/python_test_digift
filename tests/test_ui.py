@@ -10,7 +10,7 @@ def test_ui(app):
     with allure.step("Scroll home page till nominal block"):
         app.ui_actions.scroll_page_down_till_nominal()
     for nominal_value in nominal_value_list:
-        with allure.step("When I click the {} nominal value button".format(nominal_value)):
+        with allure.step("When I click the '{}' nominal value button".format(nominal_value)):
             app.ui_actions.click_nominal(nominal_value)
         with allure.step("Then that button becomes enable"):
             assert app.ui_actions.check_enable_nominal_button(nominal_value)

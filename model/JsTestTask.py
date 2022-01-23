@@ -6,5 +6,5 @@ class JsTestTask:
         self.price = price
 
     def __repr__(self):
-        return "Name: {0}, price: {1}, image_url: '{1}'".format(self.name, self.price, self.image)
+        return "\nName: {0}, price: {1}, image_url: '{2}'".format(self.name, self.price, self.image)
 
