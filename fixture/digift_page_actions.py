@@ -4,6 +4,8 @@ import time
 
 class DigiftPageHelper:
 
+    nominal_dict = {500: 0, 1000: 1, 2000: 2, 3000: 3, 5000: 4, 10000: 5}
+
     def __init__(self, app):
         self.app = app
 
@@ -12,26 +14,19 @@ class DigiftPageHelper:
         wd.execute_script("return arguments[0].scrollIntoView(true);", wd.find_element(*Locators.CARD_NOMINAL_VALUE_TEXT))
         time.sleep(2)
 
-    def click_nominal_500(self):
+    def click_nominal(self, nominal_value):
         wd = self.app.wd
-        wd.find_element(*Locators.NOMINAL_500).click()
+        wd.find_elements(*Locators.NOMINAL_VALUE)[self.nominal_dict[nominal_value]].click()
 
-    def click_nominal_1000(self):
+    def get_range_value_text(self):
         wd = self.app.wd
-        wd.find_element(*Locators.NOMINAL_1000).click()
+        return wd.find_element(*Locators.INPUT_RANGE_VALUE).get_attribute('value')
 
-    def click_nominal_2000(self):
-        wd = self.app.wd
-        wd.find_element(*Locators.NOMINAL_2000).click()
+    def check_identity_nominal(self, nominal_value):
+        return str(nominal_value) == self.get_range_value_text()
 
-    def click_nominal_3000(self):
+    def check_enable_nominal_button(self, nominal_value):
+        """ Если кнопка активна, то у нее есть класс  'par-options__button--active' """
         wd = self.app.wd
-        wd.find_element(*Locators.NOMINAL_3000).click()
-
-    def click_nominal_5000(self):
-        wd = self.app.wd
-        wd.find_element(*Locators.NOMINAL_5000).click()
-
-    def click_nominal_10000(self):
-        wd = self.app.wd
-        wd.find_element(*Locators.NOMINAL_10000).click()
+        nominal_value_button_classes = wd.find_elements(*Locators.NOMINAL_VALUE)[self.nominal_dict[nominal_value]].get_attribute("class")
+        return "par-options__button--active" in nominal_value_button_classes
