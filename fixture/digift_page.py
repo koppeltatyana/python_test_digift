@@ -15,6 +15,3 @@ class DigiftPage:
 
     def destroy(self):
         self.wd.quit()
-
-    def destroy(self):
-        self.wd.quit()
