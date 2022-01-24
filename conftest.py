@@ -2,6 +2,7 @@ import pytest
 from fixture.digift_page import DigiftPage
 from fixture.api import ApiHelper
 
+
 fixture = None
 
 
