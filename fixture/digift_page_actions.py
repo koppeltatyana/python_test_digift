@@ -4,6 +4,7 @@ import time
 
 class DigiftPageHelper:
 
+    # словарь соответствия порядкового номера кнопки и номинала кнопки
     nominal_dict = {500: 0, 1000: 1, 2000: 2, 3000: 3, 5000: 4, 10000: 5}
 
     def __init__(self, app):
@@ -11,6 +12,7 @@ class DigiftPageHelper:
 
     def scroll_page_down_till_nominal(self):
         wd = self.app.wd
+        # скролл страницы вниз до элемента 'Номинал карты'
         wd.execute_script("return arguments[0].scrollIntoView(true);", wd.find_element(*Locators.CARD_NOMINAL_VALUE_TEXT))
         time.sleep(2)
 
@@ -26,7 +28,7 @@ class DigiftPageHelper:
         return str(nominal_value) == self.get_range_value_text()
 
     def check_enable_nominal_button(self, nominal_value):
-        """ Если кнопка активна, то у нее есть класс  'par-options__button--active' """
+        """ Если кнопка активна, то у нее есть класс  'par-options__button--active' - проверяем это """
         wd = self.app.wd
         nominal_value_button_classes = wd.find_elements(*Locators.NOMINAL_VALUE)[self.nominal_dict[nominal_value]].get_attribute("class")
         return "par-options__button--active" in nominal_value_button_classes

@@ -4,7 +4,8 @@ import random
 
 def test_ui(app):
     nominal_value_list = [500, 1000, 2000, 3000, 5000, 10000]
-    random.shuffle(nominal_value_list)  # раздомизируем первоначальный список
+    # раздомизируем первоначальный список номиналов чтобы кликать на них в рандомном порядке
+    random.shuffle(nominal_value_list)
     with allure.step("Open home page"):
         app.open_home_page()
     with allure.step("Scroll home page till nominal block"):
