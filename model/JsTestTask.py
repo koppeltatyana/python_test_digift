@@ -7,3 +7,9 @@ class JsTestTask:
 
     def __repr__(self):
         return "\nName: {0}, price: {1}, image_url: '{2}'".format(self.name, self.price, self.image)
+
+    def __eq__(self, other):
+        return self.name == other.name and self.price == other.price
+
+    def sort_key(self):
+        return self.name
