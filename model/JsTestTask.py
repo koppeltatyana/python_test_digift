@@ -11,5 +11,5 @@ class JsTestTask:
     def __eq__(self, other):
         return self.name == other.name and self.price == other.price
 
-    def sort_key(self):
+    def name_sort_key(self):
         return self.name
