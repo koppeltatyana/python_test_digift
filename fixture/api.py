@@ -18,10 +18,10 @@ class ApiHelper:
             names_list += [product.name]
         return names_list
 
-    def check_Alcatel_in_names(self, names_list):
+    def check_substr_in_names(self, names_list, substr):
         flag = True
         for name in names_list:
-            if 'Alcatel' not in name:
+            if substr not in name:
                 flag = False
         return flag
 
