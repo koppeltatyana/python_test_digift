@@ -1,19 +1,8 @@
-import allure
-import random
+from pages.digift_page import DigiftPageHelper
 
 
-def test_ui(app):
-    nominal_value_list = [500, 1000, 2000, 3000, 5000, 10000]
-    # раздомизируем первоначальный список номиналов чтобы кликать на них в рандомном порядке
-    random.shuffle(nominal_value_list)
-    with allure.step("Open home page"):
-        app.open_home_page()
-    with allure.step("Scroll home page till nominal block"):
-        app.ui_actions.scroll_page_down_till_nominal()
-    for nominal_value in nominal_value_list:
-        with allure.step("When I click the '{}' nominal value button".format(nominal_value)):
-            app.ui_actions.click_nominal(nominal_value)
-        with allure.step("Then that button becomes enable"):
-            assert app.ui_actions.check_enable_nominal_button(nominal_value)
-        with allure.step("And then input field has chosen nominal value"):
-            assert app.ui_actions.check_identity_nominal(nominal_value)
+def test_click_on_all_nominal_buttons(app):
+    digift_page = DigiftPageHelper(app)
+    digift_page.go_to_site()
+    digift_page.scroll_page_down_till_nominal()
+    digift_page.click_all_nominals_and_check(digift_page.get_all_nominals())
